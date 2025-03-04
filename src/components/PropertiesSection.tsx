@@ -1,43 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropertyCard from './PropertyCard';
+import BHK3 from './resources/3BHK.jpg';
+import BHK2 from './resources/2BHK.jpg';
+import BHK21 from './resources/2BHKs.jpg';
+import { FaEye, FaTimes } from 'react-icons/fa'; // Importing eye and close icons
 
 interface PropertiesSectionProps {
   onBookNow: () => void;
 }
 
 const PropertiesSection: React.FC<PropertiesSectionProps> = ({ onBookNow }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   const featuredProperties = [
     {
       id: 1,
-      title: "Luxury 3BHK Apartment",
-      price: "$250,000",
-      size: "1,800 sq ft",
+      title: "Premium 3BHK Apartment",
+      price: "Pre-Launch Offer : ₹4500/Sqft.",
+      size: "1781.82 sq ft",
       bedrooms: 3,
       bathrooms: 2,
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: BHK3,
       status: "available"
     },
     {
       id: 2,
       title: "Premium 2BHK Apartment",
-      price: "$180,000",
-      size: "1,200 sq ft",
+      price: "Pre-Launch Offer : ₹4500/Sqft.",
+      size: "1316.57 sq ft",
       bedrooms: 2,
       bathrooms: 2,
-      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      status: "sold"
+      image: BHK2,
+      status: "available"
     },
     {
       id: 3,
-      title: "Deluxe 4BHK Penthouse",
-      price: "$450,000",
-      size: "2,500 sq ft",
-      bedrooms: 4,
-      bathrooms: 3,
-      image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      title: "Deluxe 2BHK Apartment",
+      price: "Pre-Launch Offer : ₹4500/Sqft.",
+      size: "1137.72 sq ft",
+      bedrooms: 2,
+      bathrooms: 2,
+      image: BHK21,
       status: "available"
     }
   ];
+
+  const openModal = (image: string) => {
+    setSelectedImage(image);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage(null);
+  };
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto" id="properties">
@@ -51,9 +68,28 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ onBookNow }) => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {featuredProperties.map(property => (
-          <PropertyCard key={property.id} property={property} onBookNow={onBookNow} />
+          <div key={property.id} className="relative">
+            <PropertyCard property={property} onBookNow={onBookNow} />
+            <button 
+              className="absolute top-2 left-2 bg-white rounded-full p-2 shadow-md hover:bg-gray-200"
+              onClick={() => openModal(property.image)}
+            >
+              <FaEye className="text-gray-700" />
+            </button>
+          </div>
         ))}
       </div>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-4 rounded-lg relative">
+            <button className="absolute top-2 right-2 text-gray-700" onClick={closeModal}>
+              <FaTimes className="text-xl" />
+            </button>
+            <img src={selectedImage!} alt="Property" className="max-w-full max-h-screen" />
+          </div>
+        </div>
+      )}
     </section>
   );
 };

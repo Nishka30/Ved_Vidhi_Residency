@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Phone, Home } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MessageCircle, Home } from 'lucide-react';
+import C1 from './resources/C1.jpg'; // Adjust the path as necessary
+import C2 from './resources/C2.jpg';
+import C3 from './resources/C3.jpg';
+import C4 from './resources/C4.jpg';
 
 interface HeroSectionProps {
   handleBookNow: () => void;
@@ -8,12 +12,7 @@ interface HeroSectionProps {
 const HeroSection: React.FC<HeroSectionProps> = ({ handleBookNow }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
-  const projectImages = [
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-  ];
+  const projectImages = [C1, C2, C3, C4]; // Use imported images
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) => 
@@ -46,7 +45,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ handleBookNow }) => {
             onClick={handleBookNow}
             className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-md font-medium flex items-center justify-center"
           >
-            <Phone className="w-5 h-5 mr-2" /> Book a Visit
+            <MessageCircle className="w-5 h-5 mr-2" /> Book a Visit
           </button>
           <a 
             href="#properties" 

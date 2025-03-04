@@ -11,14 +11,10 @@ const ProjectDetails: React.FC = () => {
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <h3 className="text-2xl font-semibold text-gray-900 mb-4">Luxury Living in the Heart of the City</h3>
+          <h3 className="text-2xl font-semibold text-gray-900 mb-4">Ved - Vidhi Residency</h3>
+          
           <p className="text-gray-700 mb-6">
-            Nestled in the most sought-after location, our premium residential project offers an unparalleled living experience. 
-            With meticulous attention to detail and world-class amenities, we've created homes that blend luxury, comfort, and convenience.
-          </p>
-          <p className="text-gray-700 mb-6">
-            Each residence is thoughtfully designed with spacious layouts, premium finishes, and abundant natural light. 
-            Our commitment to quality ensures that every aspect of your home exceeds expectations.
+            We are delighted to announce the launch of <strong>Ved - Vidhi Residency</strong>, a luxurious township at <strong>Besa - Pipla Road, Near Besa Square, Nagpur</strong>. Spanning over <strong>5+ acres</strong>, this premium development offers <strong>spacious 2 & 3 BHK flats</strong> with <strong>modern amenities</strong>, including a <strong>swimming pool, squash court, gym, multipurpose hall, indoor games, a large garden, AC library, waiting room, guest rooms, box cricket, badminton court, and more</strong>. The project features <strong>four towers of Ground + 13 floors</strong>, with <strong>2 BHK Type 1 (1137.72 sqft), 2 BHK Type 2 (1316.57 sqft), and 3 BHK (1781.82 sqft) units</strong>. As part of our <strong>pre-launch offer, we are offering an exclusive price of ₹4500/- per sqft</strong>. This is a limited-time opportunity that you won’t want to miss! <strong>Book your site visit today!</strong>
           </p>
           <div className="flex items-center text-emerald-600 font-medium">
             <a href="#video" className="flex items-center hover:underline">
@@ -40,7 +36,7 @@ const ProjectDetails: React.FC = () => {
               <div className="flex-shrink-0 h-6 w-6 text-emerald-600">
                 <Check className="h-6 w-6" />
               </div>
-              <p className="ml-3 text-gray-700">Spacious 2, 3 & 4 BHK luxury apartments</p>
+              <p className="ml-3 text-gray-700">Spacious 2 & 3 BHK luxury apartments</p>
             </li>
             <li className="flex items-start">
               <div className="flex-shrink-0 h-6 w-6 text-emerald-600">

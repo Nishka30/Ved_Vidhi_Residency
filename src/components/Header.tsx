@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Home } from 'lucide-react';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  NowBook: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ NowBook }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -24,11 +28,10 @@ const Header: React.FC = () => {
 
   const navLinks = [
     { name: 'Home', href: '#' },
-    { name: 'About', href: '#about' },
     { name: 'Properties', href: '#properties' },
     { name: 'Availability', href: '#availability' },
+    { name: 'About', href: '#about' },
     { name: 'Location', href: '#location' },
-    { name: 'Contact', href: '#contact' },
   ];
 
   return (
@@ -39,7 +42,7 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             <a href="#" className={`flex items-center ${isScrolled ? 'text-emerald-600' : 'text-white'}`}>
               <Home className="h-8 w-8 mr-2" />
-              <span className="font-bold text-xl">LuxuryEstates</span>
+              <span className="font-bold text-xl">Ved - Vidhi</span>
             </a>
           </div>
 
@@ -62,8 +65,8 @@ const Header: React.FC = () => {
 
           {/* Contact Button */}
           <div className="hidden md:block">
-            <a
-              href="#contact"
+            <button
+              onClick={NowBook}
               className={`px-4 py-2 rounded-md font-medium transition-colors duration-200 ${
                 isScrolled
                   ? 'bg-emerald-600 text-white hover:bg-emerald-700'
@@ -71,7 +74,7 @@ const Header: React.FC = () => {
               }`}
             >
               Book a Visit
-            </a>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -110,13 +113,15 @@ const Header: React.FC = () => {
                 {link.name}
               </a>
             ))}
-            <a
-              href="#contact"
-              className="block px-3 py-2 rounded-md text-base font-medium bg-emerald-600 text-white hover:bg-emerald-700 text-center mt-4"
-              onClick={() => setIsMenuOpen(false)}
+            <button
+              onClick={() => {
+                handleBookNow();
+                setIsMenuOpen(false);
+              }}
+              className="w-full px-3 py-2 rounded-md text-base font-medium bg-emerald-600 text-white hover:bg-emerald-700 text-center mt-4"
             >
               Book a Visit
-            </a>
+            </button>
           </div>
         </div>
       )}
