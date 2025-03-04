@@ -9,6 +9,7 @@ import VideoSection from './components/VideoSection';
 import BookingStatusSection from './components/BookingStatusSection';
 import LocationSection from './components/LocationSection';
 import BrochureButton from './components/BrochureButton';
+import './styles.css';
 
 function App() {
   const handleBookNow = () => {

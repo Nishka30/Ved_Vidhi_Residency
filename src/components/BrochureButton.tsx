@@ -1,24 +1,86 @@
 import React, { useState } from 'react';
-import { FileText, X, Download, ChevronRight } from 'lucide-react';
+import { FileText, X, Download, Share2, Mail, MessageSquare } from 'lucide-react';
 
 const BrochureButton: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isShareOpen, setIsShareOpen] = useState(false);
+  const [isDownloadOpen, setIsDownloadOpen] = useState(false);
 
-  const toggleOpen = () => {
-    setIsOpen(!isOpen);
+  const toggleShare = () => {
+    setIsShareOpen(!isShareOpen);
+    setIsDownloadOpen(false);
   };
 
+  const toggleDownload = () => {
+    setIsDownloadOpen(!isDownloadOpen);
+    setIsShareOpen(false);
+  };
+
+  const shareText = "Check out Ved - Vidhi Residency's luxurious properties! Download the brochure here: ";
+  const shareUrl = window.location.href;
+  const fullShareText = encodeURIComponent(shareText + shareUrl);
+
+  const shareLinks = [
+    {
+      name: 'WhatsApp',
+      url: `whatsapp://send?text=${fullShareText}`,
+      icon: <MessageSquare className="h-5 w-5" />,
+      color: 'bg-[#25D366] hover:bg-[#128C7E]'
+    },
+    {
+      name: 'Gmail',
+      url: `mailto:?subject=${encodeURIComponent('Ved - Vidhi Residency Brochure')}&body=${fullShareText}`,
+      icon: <Mail className="h-5 w-5" />,
+      color: 'bg-[#EA4335] hover:bg-[#D93025]'
+    },
+    {
+      name: 'SMS',
+      url: `sms:?body=${fullShareText}`,
+      icon: <MessageSquare className="h-5 w-5" />,
+      color: 'bg-[#4285F4] hover:bg-[#3367D6]'
+    }
+  ];
+
   return (
-    <div className="fixed right-0 bottom-0 mb-8 mr-8 z-50 flex items-center">
-      {/* Expanded brochure box */}
-      {isOpen && (
-        <div className="mr-16 bg-white rounded-lg shadow-2xl p-6 max-w-xs animate-fadeIn">
+    <div className="fixed right-0 bottom-0 mb-8 mr-8 z-50 flex flex-col gap-4 items-end">
+      {/* Share Panel */}
+      {isShareOpen && (
+        <div className="mb-4 bg-white rounded-lg shadow-2xl p-6 max-w-xs animate-fadeIn">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-xl font-bold text-gray-800">Project Brochure</h3>
+            <h3 className="text-xl font-bold text-gray-800">Share Project</h3>
             <button 
-              onClick={toggleOpen}
+              onClick={toggleShare}
               className="text-gray-500 hover:text-gray-700"
-              aria-label="Close brochure panel"
+              aria-label="Close share panel"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+          
+          <div className="grid grid-cols-3 gap-3">
+            {shareLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.url}
+                className={`flex flex-col items-center justify-center py-3 px-4 rounded-md text-white transition duration-300 ${link.color}`}
+                data-action={link.name === 'WhatsApp' ? 'share/whatsapp/share' : undefined}
+              >
+                {link.icon}
+                <span className="text-xs mt-1">{link.name}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Download Panel */}
+      {isDownloadOpen && (
+        <div className="mb-4 bg-white rounded-lg shadow-2xl p-6 max-w-xs animate-fadeIn">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xl font-bold text-gray-800">Download Brochure</h3>
+            <button 
+              onClick={toggleDownload}
+              className="text-gray-500 hover:text-gray-700"
+              aria-label="Close download panel"
             >
               <X className="h-5 w-5" />
             </button>
@@ -46,24 +108,36 @@ const BrochureButton: React.FC = () => {
         </div>
       )}
       
-      {/* Circular button */}
-      <button
-        onClick={toggleOpen}
-        className={`flex items-center justify-center rounded-full shadow-lg transition-all duration-300 ${
-          isOpen 
-            ? 'bg-white text-emerald-600 w-16 h-16' // Increased size when open
-            : 'bg-gradient-to-r from-emerald-500 to-emerald-700 text-white w-16 h-16 hover:w-20 hover:h-20' // Increased size when closed
-        }`}
-        aria-label="Open brochure download"
-      >
-        {isOpen ? (
-          <ChevronRight className="h-8 w-8" /> // Increased icon size when open
-        ) : (
-          <FileText className="h-8 w-8" /> // Increased icon size when closed
-        )}
-      </button>
+      {/* Floating Buttons */}
+      <div className="flex gap-4">
+        {/* Share Button */}
+        <button
+          onClick={toggleShare}
+          className={`flex items-center justify-center rounded-full shadow-lg transition-all duration-300 ${
+            isShareOpen 
+              ? 'bg-white text-emerald-600 w-14 h-14' 
+              : 'bg-gradient-to-r from-emerald-500 to-emerald-700 text-white w-14 h-14 hover:scale-110 hover:shadow-xl'
+          }`}
+          aria-label={isShareOpen ? "Close share panel" : "Open share panel"}
+        >
+          <Share2 className="h-6 w-6" />
+        </button>
+
+        {/* Download Button */}
+        <button
+          onClick={toggleDownload}
+          className={`flex items-center justify-center rounded-full shadow-lg transition-all duration-300 ${
+            isDownloadOpen 
+              ? 'bg-white text-emerald-600 w-14 h-14' 
+              : 'bg-gradient-to-r from-emerald-500 to-emerald-700 text-white w-14 h-14 hover:scale-110 hover:shadow-xl'
+          }`}
+          aria-label={isDownloadOpen ? "Close download panel" : "Open download panel"}
+        >
+          <FileText className="h-6 w-6" />
+        </button>
+      </div>
     </div>
   );
 };
 
-export default BrochureButton;0
+export default BrochureButton;

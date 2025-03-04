@@ -27,11 +27,11 @@ const Header: React.FC<HeaderProps> = ({ NowBook }) => {
   };
 
   const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'Properties', href: '#properties' },
-    { name: 'Availability', href: '#availability' },
-    { name: 'About', href: '#about' },
-    { name: 'Location', href: '#location' },
+    { name: '', href: '#' },
+    { name: '', href: '#properties' },
+    { name: '', href: '#availability' },
+    { name: '', href: '#about' },
+    { name: '', href: '#location' },
   ];
 
   return (
