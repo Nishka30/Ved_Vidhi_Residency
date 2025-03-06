@@ -1,4 +1,3 @@
-
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HeroSection from './components/HeroSection';
@@ -9,6 +8,7 @@ import VideoSection from './components/VideoSection';
 import BookingStatusSection from './components/BookingStatusSection';
 import LocationSection from './components/LocationSection';
 import BrochureButton from './components/BrochureButton';
+import ProgressSection from './components/ProgressSection';
 import './styles.css';
 
 function App() {
@@ -26,6 +26,9 @@ function App() {
       {/* Properties Section */}
       <PropertiesSection onBookNow={handleBookNow} />
 
+      {/* Progress Section */}
+      <ProgressSection />
+
       {/* Video Section */}
       <VideoSection />
       
@@ -35,14 +38,11 @@ function App() {
       {/* Amenities Section */}
       <AmenitiesSection />
 
-         {/* Project Details Section */}
-         <ProjectDetails />
+      {/* Project Details Section */}
+      <ProjectDetails />
       
       {/* Location Section */}
       <LocationSection />
-
-    
-      
       
       {/* Floating Brochure Button */}
       <BrochureButton />
