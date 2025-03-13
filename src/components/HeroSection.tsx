@@ -29,9 +29,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ handleBookNow }) => {
   };
 
   const navLinks = [
-    { name: 'Progress', href: '#progress', icon: <Building2 className="w-4 h-4 md:w-5 md:h-5" /> },
+    { name: 'Virtual Tour', href: '#progress', icon: <Building2 className="w-4 h-4 md:w-5 md:h-5" /> },
     { name: 'Properties', href: '#properties', icon: <Star className="w-4 h-4 md:w-5 md:h-5" /> },
-    { name: 'Availability', href: '#availability', icon: <Calendar className="w-4 h-4 md:w-5 md:h-5" /> },
+    { name: 'Booking Status', href: '#availability', icon: <Calendar className="w-4 h-4 md:w-5 md:h-5" /> },
     { name: 'Location', href: '#location', icon: <MapPin className="w-4 h-4 md:w-5 md:h-5" /> },
   ];
 
